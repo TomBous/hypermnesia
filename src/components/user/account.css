@@ -1,0 +1,34 @@
+#edit_form {
+    margin: 0 auto;
+    margin-top: 30px;
+}
+#edit_form i {
+    left: -5px;
+}
+#edit_form input {
+    margin-bottom: 30px;
+}
+.fake_input {
+    text-align: center;
+    margin-top: 30px;
+}
+.fake_input div {
+    display: flex;
+    flex-flow: row row-reverse;
+    justify-content: space-between;
+    width: 350px;
+    line-height: 2;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.fake_input span {
+    display: inline-block;
+    width: 250px;
+    border-radius: 5px;
+	border: 3px dotted #3d64ae;
+	line-height: 2;
+    padding: 5px 10px 5px 10px;
+    box-shadow: 0 0 0 #89acec;
+    transition: all 1s;
+}

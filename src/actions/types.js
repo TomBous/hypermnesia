@@ -1,0 +1,18 @@
+export const GET_ERRORS = "GET_ERRORS";
+export const SHOW_ERRORS = "SHOW_ERRORS";
+
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
+
+export const GET_KNOWLEDGES = "GET_KNOWLEDGES";
+export const GET_KNOWLEDGE = "GET_KNOWLEDGE";
+
+export const SET_PERSPECTIVE = "SET_PERSPECTIVE";
+export const GET_PERSPECTIVES = "GET_PERSPECTIVES";
+
+export const GET_TAGS = "GET_TAGS";
+
+export const GET_SOLUTIONS = "GET_SOLUTIONS";
+export const ADD_SOLUTIONS = "ADD_SOLUTIONS";
+
+export const GET_CONTEXTS = "GET_CONTEXTS";
+export const GET_CONSTRAINTS = "GET_CONSTRAINTS";

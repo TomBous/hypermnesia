@@ -1,0 +1,61 @@
+.small_card {
+    border-radius: 7px;
+    background-color: #FFF;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 20px;
+}
+.small_card_content {
+    padding: 10px;
+    color: #666;
+}
+.small_card_content h2 {
+    color: #777;
+    margin-bottom: 15px;
+}
+.small_card_footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 3px 10px;
+    color: #5e81ac;
+}
+.small_card_footer .vote i {
+    margin-left: 10px;
+}
+.small_card_footer span {
+    display: inline-block;
+    min-width: 40px;
+    text-align: right;
+    font-weight: 700;
+}
+.solutions_container,.contexts_container,.constraints_container,.ressources_container {
+    padding: 0 20px;
+    min-width: max(25%, 300px);
+    flex: 1 1 25%;
+}
+.solutions_container,.contexts_container,.constraints_container {
+    border-right: 2px solid rgba(155, 155, 155, 0.3);
+}
+
+.custom-counter {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .custom-counter li {
+    counter-increment: step-counter;
+    margin-bottom: 10px;
+  }
+  
+  .custom-counter li::before {
+    content: counter(step-counter);
+    margin-right: 10px;
+    font-size: 80%;
+    background-color: #999;
+    color: white;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 15px;
+  }

@@ -1,0 +1,65 @@
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    color: #FFF;
+}
+nav {
+    width: 100%;
+    background-color: #5d81ac;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 5px -2px rgba(0, 0, 0, 0.5);
+    height: 7vh;
+}
+.navigation ul {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+.navigation i {
+    font-size: 1.5em;
+    color: #FFF;
+    transition: all 0.3s;
+}
+.navigation i:hover {
+    color: rgb(255, 102, 102);
+}
+.navigation li {
+    list-style: none;
+    margin: 10px 20px;
+}
+.navigation a {
+    text-decoration: none;
+    color: #FFF;
+}
+#logo img {
+    width: 50px;
+    margin: 0 20px;
+}
+#logo a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------------- SELECT PERSPECTIVE ----------------*/
+
+.select-container {
+    width: 250px;
+    margin: 0 10px;
+}
+.select-container div:first-child {
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+
+.navigation li {
+    margin: 10px 5px;
+}
+.navigation ul {
+    padding: 0;
+}
+}

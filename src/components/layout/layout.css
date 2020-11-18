@@ -1,0 +1,465 @@
+h1 {
+    font-family: 'Dosis', sans-serif;
+    font-weight: 400;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+  border: none;
+}
+blockquote {
+  position:relative;
+  border-left: 6px solid #5e81ac;
+  background-color: rgba(162, 179, 187, 0.1);
+  padding: 5px 24px 16px 12px;
+  margin: 24px 0 36px;
+  color: #545149;
+}
+blockquote:before {
+content: '“';
+position: absolute;
+left: 12px;
+top: 0;
+color: #5e81ac;
+font-size: 2em;
+font-family: Arial, serif;
+line-height: 1em;
+font-weight: 700;
+}
+/* -------------------- POSITIONNING -----------------*/
+.flex-container {
+    display: flex;
+    flex-flow: column wrap;
+    width: 80vw;
+    margin: 0 auto;
+}
+.flex {
+    display: flex;
+}
+.frow {
+    flex-flow: row wrap;
+}
+.fcolumn {
+    flex-flow: column wrap;
+}
+.fcenter {
+    justify-content: center;
+}
+.faround {
+    justify-content: space-around;
+}
+.fend {
+  justify-content: flex-end;
+}
+.fbetween {
+    justify-content: space-between;
+    width: 100%;
+}
+.fmiddle {
+    align-items: center;
+}
+.fstart {
+  align-items: flex-start;
+}
+.tcenter {
+    text-align: center;
+}
+.finline {
+    align-items: baseline;
+    position: relative;
+}
+.dashboard-container {
+    width: 100%;
+    padding-left: 250px;
+    padding-top: 7vh;
+    background-color: rgb(252, 252, 252);
+    min-height: 100vh;
+}
+.full-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 7vh;
+  background-color: rgb(252, 252, 252);
+  position: relative;
+}
+.mgl-10 {
+  margin-left: 10px;
+}
+.mgt-50 {
+  margin-top: 50px;
+}
+.mgb-30 {
+  margin-bottom: 30px;
+}
+.mglr-20 {
+  margin: 0 20px;
+}
+.mgtb-30 {
+  margin: 30px 0;
+}
+/* -------------------- Card Component -----------------*/
+/* ----------- Login/Register ---------*/
+.card {
+    width: 500px;
+    border-radius: 10px;
+    background-color: #F0F0F0;
+    margin: 20px auto;
+    box-shadow: 0 0 5px -2px rgba(0, 0, 0, 1);
+}
+.card input {
+    margin-bottom: 25px;
+    width: 300px;
+}
+.card-header {
+    border-radius: 8px 8px 0px 0px;
+    background-color: #5e81ac;
+    color: #FFF;
+    padding: 15px;
+    text-align: center;
+}
+.card-content {
+    width: 80%;
+    margin: 0 auto;
+    color: #555;
+    padding: 50px 25px 25px 25px;
+}
+.card-content a {
+  text-decoration: underline;
+}
+.card-footer {
+    border-radius: 0px 0px 8px 8px;
+    background-color: #5e81ac;
+    color: #FFF;
+}
+/* ----------- Knowledge ---------*/
+.knowledge-card {
+    width: 300px;
+    border-radius: 10px;
+    background-color: #FFF;
+    margin: 20px 20px;
+    box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.5);
+    display: table;
+}
+.knowledge-header img {
+    width: 300px;
+    border-radius: 10px 10px 0 0px;
+}
+.knowledge-footer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 15px;
+}
+.knowledge-footer i {
+  font-size: 1.5em;
+  color: #999;
+}
+.knowledge-content {
+    padding: 10px;
+}
+
+.knowledge-card div.tag {
+  background-color: #5e81ac;
+  color: #FFF;
+  padding: 5px;
+  margin: 10px  5px 0 5px;
+  border-radius: 3px;
+
+}
+/* -------------------- Buttons Components -----------------*/
+
+.btn {
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+input.btn {
+    width: 200px;
+    margin-top: 25px;
+}
+.btn-success {
+	background: linear-gradient(14deg, #3f935f, #4bae71);
+  box-shadow: 1px 4px 4px -5px #000;
+	color: #FFF;
+  transition: all 2s;
+  position: relative;
+}
+.btn-success:hover {
+  -webkit-animation: color-change-success 1s cubic-bezier(.17,.84,.44,1) forwards;
+  animation: color-change-success 1s cubic-bezier(.17,.84,.44,1) forwards;
+  }
+.btn-danger {
+  background: linear-gradient(14deg, #d1654a, #e17055);
+  box-shadow: 1px 4px 4px -5px #000;
+  color: #FFF;
+  transition: all 2s;
+  position: relative;
+}
+.btn-danger:hover {
+  -webkit-animation: color-change-danger 1s cubic-bezier(.17,.84,.44,1) forwards;
+  animation: color-change-danger 1s cubic-bezier(.17,.84,.44,1) forwards;
+  }
+.btn-primary {
+  background: linear-gradient(14deg, #5e81ac, #698db8);
+  box-shadow: 1px 4px 4px -5px #000;
+  color: #FFF;
+  transition: all 2s;
+  position: relative;
+}
+.btn-primary:hover {
+    -webkit-animation: color-change-primary 1s cubic-bezier(.17,.84,.44,1) forwards;
+    animation: color-change-primary 1s cubic-bezier(.17,.84,.44,1) forwards;
+  }
+ @-webkit-keyframes color-change-success {
+    0% {
+      background: #4bae71;
+    }
+    100% {
+      background: #5dca87;
+    }
+  }
+  @keyframes color-change-success {
+    0% {
+      background: #4bae71;
+    }
+    100% {
+      background: #5dca87;
+    }
+  }
+  @-webkit-keyframes color-change-danger {
+    0% {
+      background: #e17055;
+    }
+    100% {
+      background: #f07b5e;
+    }
+  }
+  @keyframes color-change-danger {
+    0% {
+      background: #e17055;
+    }
+    100% {
+      background: #f07b5e;
+    }
+  }
+  @-webkit-keyframes color-change-primary {
+    0% {
+      background: #698db8;
+    }
+    100% {
+      background: #5f98df;
+    }
+  }
+  @keyframes color-change-primary {
+    0% {
+      background: #698db8;
+    }
+    100% {
+      background: #5f98df;
+    }
+  }
+
+  .btn-round {
+    color: #5d81ac;
+    margin: 0px 0px 20px 0px;
+    cursor: pointer;
+  }
+/* -------------------- Errors Components -----------------*/
+  
+.error {
+  background-color: #c74b3a;
+  color: #FFF;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+/* -------------------- Inputs Components -----------------*/
+
+.label-green {
+  padding: 5px;
+  background-color: #5dca87;
+  color: #FFF;
+  border-radius: 5px;
+}
+/* -------------------- Inputs Components -----------------*/
+
+main input[type="email"],main input[type="password"],main input[type="text"] {
+	border-radius: 5px;
+	border: 3px dotted #3d64ae;
+	line-height: 2;
+    padding: 5px 10px 5px 60px;
+    box-shadow: 0 0 0 #89acec;
+    transition: all 1s;
+}
+main input[type="email"]:focus,main input[type="password"]:focus,main input[type="text"]:focus {
+    border: 3px solid #7da3e9;
+    box-shadow: 0 0 5px #89acec;
+}
+main input::placeholder {
+    color: #777;
+    opacity: 1;
+    transition: opacity 1s;
+}
+main input:focus::placeholder  {
+    opacity: 0;
+}
+
+.input-icon {
+	padding: 14.5px;
+	background: #6288b7;
+	color: white;
+	min-width: 50px;
+	text-align: center;
+	border-radius: 8px 0 0 8px;
+	position: absolute;
+	left: 24px;
+}
+
+.invalid {
+	-webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+            animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+
+}
+.invalid input {
+    border: 3px dotted #c74b3a;
+}
+/*------------------ List ----------------------*/
+.step ul {
+  list-style: none;
+  color: #555;
+}
+.step li::before {
+  content: "\2022";
+  color: #5e81ac;
+  display: inline-block;
+  width: 1em;
+  margin-left: 0em;
+  font-size: 2.5em;
+  vertical-align: middle;
+}
+
+/* -------------------- Sidebar -----------------*/
+.sidebar {
+  height: 100vh;
+  width: 250px;
+  box-shadow: 0 0 8px -2px #999;
+  background-color: #FFF;
+  position: fixed;
+  padding-top: 7vh;
+  overflow: auto;
+}
+.sidebar ul {
+    display: flex;
+    flex-flow: column wrap;
+    padding: 0;
+    margin: 0;
+}
+.sidebar li {
+    list-style: none;
+    border-bottom: 2px dotted #E9E9E9;
+    padding: 20px 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #777;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+.sidebar li:hover {
+  background-color: rgb(221, 221, 221);
+}
+.sidebar i {
+  font-size: 25px;
+}
+.sidebar li.active {
+  background-color: rgb(221, 221, 221);
+}
+/* Dans le layout .full-container on garde la side barre cachée pour les appels des savoir en cas de reload */
+.full-container > div.sidebar {
+  display: none;
+}
+/* ----------------------------------------------
+ * Generated by Animista on 2020-4-25 22:50:31
+ * Licensed under FreeBSD License.
+ * See http://animista.net/license for more info. 
+ * w: http://animista.net, t: @cssanimista
+ * ---------------------------------------------- */
+
+/**
+ * ----------------------------------------
+ * animation shake-horizontal
+ * ----------------------------------------
+ */
+ @-webkit-keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-10px);
+              transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
+    }
+    80% {
+      -webkit-transform: translateX(8px);
+              transform: translateX(8px);
+    }
+    90% {
+      -webkit-transform: translateX(-8px);
+              transform: translateX(-8px);
+    }
+  }
+  @keyframes shake-horizontal {
+    0%,
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70% {
+      -webkit-transform: translateX(-10px);
+              transform: translateX(-10px);
+    }
+    20%,
+    40%,
+    60% {
+      -webkit-transform: translateX(10px);
+              transform: translateX(10px);
+    }
+    80% {
+      -webkit-transform: translateX(8px);
+              transform: translateX(8px);
+    }
+    90% {
+      -webkit-transform: translateX(-8px);
+              transform: translateX(-8px);
+    }
+  }
+  
+  @media (min-width: 1200px) and (orientation: landscape) {
+    .flex-container {
+      width: 60%;
+    }
+  }
+
+  @media (min-width: 1600px) and (orientation: landscape) {
+    .flex-container {
+      width: 50%;
+    }
+  }

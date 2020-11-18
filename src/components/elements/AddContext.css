@@ -1,0 +1,14 @@
+.full-popup {
+    position: fixed;
+    top: 8vh;
+    left: 0;
+    z-index: 500;
+    background-color: rgb(252, 252, 252);
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+}

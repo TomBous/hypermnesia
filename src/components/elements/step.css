@@ -1,0 +1,71 @@
+.title {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: #555;
+    position: relative;
+}
+.step {
+    border-radius: 10px;
+    background-color: #FFF;
+    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.2);
+    position: relative;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.step p {
+    margin-top: 20px;
+    color: #555;
+}
+.step img {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+}
+.step_content {
+    padding: 20px 20px 20px 80px;
+    display: inline-block;
+    width: 100%;
+}
+.step_num {
+    font-size: 3em;
+    font-weight: 600;
+    position: absolute;
+    margin-left: -60px;
+    color: #999;
+}
+.step ul {
+    list-style: none;
+    color: #555;
+    padding-left: 2em;
+}
+.step li::before {
+content: "\2022";
+color: #5e81ac;
+display: inline-block;
+width: 0.6em;
+margin-left: 0em;
+font-size: 2.5em;
+vertical-align: middle;
+}
+/* -------------- Markdown styling  */
+.content h1,.content h2,.content h3 {
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #555;
+    margin-top: 20px!important;
+}
+.content h1 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+.content h2 {
+    font-size: 1.2em;
+}
+.content h3 {
+    font-size: 1em;
+}
+/* -------------- SYNTAX HIGHLIGHTER */
+.step pre {
+    border-radius: 5px;
+}
+.step pre .react-syntax-highlighter-line-number {
+    opacity: 0.4;
+}

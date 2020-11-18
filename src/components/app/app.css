@@ -1,0 +1,19 @@
+body {
+    /*background-color: #eceff4;*/
+    background: url('../../images/website/bg-login-1-blured.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+/*-------------------- LOGIN --------------------*/
+
+.login {
+    margin-top: 20vh;
+}
+.no_result {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #999;
+}
