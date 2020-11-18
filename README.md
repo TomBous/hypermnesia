@@ -12,11 +12,13 @@ Backend : NodeJS, Express, MySQL
 
 ### Captures
 
-![screen1](/home/tom/Documents/0-SIMPLON/Master-Project/hypermnesia/Readme/Screenshot_1.jpg)
+![](./Readme/Screenshot_1.jpg)
 
-![](/home/tom/Documents/0-SIMPLON/Master-Project/hypermnesia/Readme/Screenshot_2.png)
+![](./Readme/Screenshot_2.png)
 
+![](./Readme/Screenshot_3.png)
 
+![](./Readme/Screenshot_4.png)
 
 > This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
