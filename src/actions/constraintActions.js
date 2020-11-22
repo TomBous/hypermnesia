@@ -35,6 +35,26 @@ export const addConstraint = (constraint) => async (dispatch) => {
             })
 
         } else {
+            findConstraints(constraint.idKnowledge);
+            return;
+        }
+    } catch (error) {
+        dispatch({
+            type: GET_ERRORS,
+            payload: error,
+        });
+    }
+};
+export const deleteConstraint = (idConstraint) => async (dispatch) => {
+    try {
+        const res = await axios.delete(`http://127.0.0.1:8080/api/constraints/${idConstraint}`);
+        if (res.data.success === 0) {
+            dispatch({
+                type: GET_ERRORS,
+                payload: res.data.message,
+            })
+
+        } else {
             return;
         }
     } catch (error) {

@@ -1,9 +1,24 @@
 .small_card {
     border-radius: 7px;
     background-color: #FFF;
-    box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0,0,0,.12);
     position: relative;
     margin-bottom: 20px;
+}
+.small_card_header {
+    border-radius: 7px 7px 0 0;
+    background-color: #5e81ac;
+    color: #FFF;
+    box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0,0,0,.12);
+}
+.small_card_header>div {
+    padding: 10px;
+    font-weight: 700;
+    font-style: italic;
+}
+.small_card_header span {
+    font-weight: 400;
+    font-size: 0.8em;
 }
 .small_card_content {
     padding: 10px;

@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { PropTypes } from "prop-types";
 import Editor from '../elements/Editor'
-import SmallCard from '../elements/SmallCard'
+import SolutionCard from '../elements/SolutionCard'
+import InformationCard from '../elements/InformationCard'
 import { useSelector, useDispatch } from "react-redux"
-import { findContexts } from "../../actions/contextsActions"
-import { findConstraints } from "../../actions/constraintActions"
+import { findContexts, deleteContext } from "../../actions/contextsActions"
+import { findConstraints, deleteConstraint } from "../../actions/constraintActions"
 import './Overview.css';
 // import Editor from 'react-markdown-editor-lite';
 
 export default function Solution(props) {
-  const [status, setStatus] = useState('idle');
+  const [addType, setAddType] = useState("none");
   const [solutions, setSolutions] = useState(props.solutions); // On récupère les solutions réorganisées dans Knowledge.js
   const contexts = useSelector(state => state.knowledge.informations.contexts); // On récupère direct depuis redux
   const constraints = useSelector(state => state.knowledge.informations.constraints); // On récupère direct depuis redux
@@ -20,26 +21,37 @@ export default function Solution(props) {
     props.solViewer(number);
   };
 
+  const removeContext = (idContext) => {
+    dispatch(deleteContext(idContext));
+    setTimeout(() => {
+      dispatch(findContexts(props.idKnowledge));
+    }, 150)
+    
+  }
+  const removeConstraint = (idConstraint) => {
+    dispatch(deleteConstraint(idConstraint))
+    setTimeout(() => {
+      dispatch(findConstraints(props.idKnowledge));
+    }, 150)
+  }
+
   useEffect(() => {
-    if (status === "idle") {
-    dispatch(findContexts(props.idKnowledge));
-    dispatch(findConstraints(props.idKnowledge));
-    setStatus('fetched');
-    }
-    return;
-  }, [contexts])
+      dispatch(findContexts(props.idKnowledge));
+      dispatch(findConstraints(props.idKnowledge));
+  }, []) // run once
+
   
   let solutionsList = [];
   if (Array.isArray(solutions)) {
     solutionsList = solutions.map((solution, index) => (
-    <SmallCard type="solution" key={solution[0].id_solution} content={solution.map((sol) => { return sol.title })} votes={solution[0].counter_vote} onclick={() => viewSolution(index)}/>
+    <SolutionCard type="solution" key={solution[0].id_solution} index={index} content={solution.map((sol) => { return sol.title })} votes={solution[0].counter_vote} onclick={() => viewSolution(index)}/>
   ))
   }
 
   let contextsList = [], constraintsList = [];
   if (typeof contexts[0] !== "string") { // On check que le premier élément du tableau est différent d'une string (ie: pas de résultats)
-  contextsList = contexts.map((context) => <SmallCard type="information" key={context.id} title={context.title} content={context.content} votes={context.counter_vote} />);
-  constraintsList = constraints.map((constraint) => <SmallCard type="information" key={constraint.id} title={constraint.title} content={constraint.content} votes={constraint.counter_vote} />);
+  contextsList = contexts.map((context) => <InformationCard key={context.id} information={context} delete={removeContext}/>);
+  constraintsList = constraints.map((constraint) => <InformationCard key={constraint.id} information={constraint} delete={removeConstraint}/>);
   }
 
 

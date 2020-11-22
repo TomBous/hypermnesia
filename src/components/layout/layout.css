@@ -328,19 +328,7 @@ main input:focus::placeholder  {
     border: 3px dotted #c74b3a;
 }
 /*------------------ List ----------------------*/
-.step ul {
-  list-style: none;
-  color: #555;
-}
-.step li::before {
-  content: "\2022";
-  color: #5e81ac;
-  display: inline-block;
-  width: 1em;
-  margin-left: 0em;
-  font-size: 2.5em;
-  vertical-align: middle;
-}
+
 
 /* -------------------- Sidebar -----------------*/
 .sidebar {
