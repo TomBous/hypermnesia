@@ -7,10 +7,12 @@ import { useSelector, useDispatch } from "react-redux"
 import { findContexts, deleteContext } from "../../actions/contextsActions"
 import { findConstraints, deleteConstraint } from "../../actions/constraintActions"
 import './Overview.css';
+import AddContext from '../elements/AddContext'
+import AddConstraint from '../elements/AddConstraint'
 // import Editor from 'react-markdown-editor-lite';
 
 export default function Solution(props) {
-  const [addType, setAddType] = useState("none");
+  const [addType, setAddType] = useState("");
   const [solutions, setSolutions] = useState(props.solutions); // On récupère les solutions réorganisées dans Knowledge.js
   const contexts = useSelector(state => state.knowledge.informations.contexts); // On récupère direct depuis redux
   const constraints = useSelector(state => state.knowledge.informations.constraints); // On récupère direct depuis redux
@@ -57,6 +59,8 @@ export default function Solution(props) {
 
   return (
     <div className="flex frow faround">
+    {addType === "constraint" && <AddConstraint idKnowledge={props.idKnowledge} close={setAddType}/>}
+    {addType === "context" && <AddContext idKnowledge={props.idKnowledge} close={setAddType}/>}
       <div className="solutions_container flex fcolumn">
         <div className="flex frow fcenter fmiddle mgb-30">
           <h1>Solutions</h1>
@@ -67,14 +71,14 @@ export default function Solution(props) {
       <div className="contexts_container flex fcolumn">
         <div className="flex frow fcenter fmiddle mgb-30">
           <h1>Contextes</h1>
-          <i className="btn-round-plus fas fa-2x fa-plus-circle" onClick={() => props.switcher("addContext")}></i>
+          <i className="btn-round-plus fas fa-2x fa-plus-circle" onClick={() => setAddType("context")}></i>
         </div>
         {contextsList}
       </div>
       <div className="constraints_container flex fcolumn">
         <div className="flex frow fcenter fmiddle mgb-30">
           <h1>Contraintes</h1>
-          <i className="btn-round-plus fas fa-2x fa-plus-circle" onClick={() => props.switcher("addConstraint")}></i>
+          <i className="btn-round-plus fas fa-2x fa-plus-circle" onClick={() => setAddType("constraint")}></i>
         </div>
         {constraintsList}
       </div>

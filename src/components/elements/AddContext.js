@@ -34,7 +34,7 @@ export default function AddContext(props) {
         }
         console.log("Data : ", data);
         dispatch(addContext(data));
-        props.switchView("overview");
+        props.close("");
     }
 
     return (
@@ -47,7 +47,7 @@ export default function AddContext(props) {
                 <SimpleInput type="text" name="context_title" placeholder="Titre de l'élément de contexte" value={context.title} onchange={handleContextChange}/>
                 <textarea name="context" id="context" placeholder="Détails du contexte" value={context.content} onChange={handleContextChange}></textarea>
                 <div className="flex frow fbetween">
-                    <button className="btn btn-danger" onClick={() => props.switchView("overview")}>Annuler</button>
+                    <button className="btn btn-danger" onClick={() => props.close("")}>Annuler</button>
                     <button className="btn btn-success" onClick={(e) => handleSubmit(e)}>Ajouter</button>
                 </div>
             </div>

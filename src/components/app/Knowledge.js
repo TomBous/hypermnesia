@@ -4,8 +4,6 @@ import Step from '../elements/Step'
 import Sidebar from '../layout/sidebar'
 import Solution from './Solution'
 import Overview from './Overview'
-import AddContext from '../elements/AddContext'
-import AddConstraint from '../elements/AddConstraint'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
 import { findSolutions } from "../../actions/solutionsActions"
@@ -131,10 +129,6 @@ class Knowledge extends Component {
             content = <Overview idKnowledge={id} solutions={this.state.solutions} history={this.props.history} switcher={this.switchView} solViewer={this.selectSolution}/>;
         } else if (this.state.currentView === "addSolution") {
             content = <Solution idKnowledge={id} history={this.props.history}/>;
-        } else if (this.state.currentView === "addContext") {
-            content = <AddContext idKnowledge={id} switchView={this.switchView} history={this.props.history}/>;
-        } else if (this.state.currentView === "addConstraint") {
-            content = <AddConstraint idKnowledge={id} switchView={this.switchView} history={this.props.history}/>;
         } else {
             content = <div className="no_result"><h1>Aucune solution</h1></div>
         }

@@ -35,7 +35,7 @@ export default function AddConstraint(props) {
           idKnowledge: props.idKnowledge
         }
         dispatch(addConstraint(data));
-        props.switchView("overview");
+        props.close("");
     }
 
     return (
@@ -47,7 +47,7 @@ export default function AddConstraint(props) {
                     <SimpleInput type="text" name="constraint_title" placeholder="Titre de la contrainte" value={constraint.title} onchange={handleConstraintChange} />
                     <textarea name="constraint" id="constraint" placeholder="Détails de la contrainte" value={constraint.content} onChange={handleConstraintChange}></textarea>
                     <div className="flex frow fbetween">
-                        <button className="btn btn-danger" onClick={() => props.switchView("overview")}>Annuler</button>
+                        <button className="btn btn-danger" onClick={() => props.close("")}>Annuler</button>
                         <button className="btn btn-success" onClick={(e) => handleSubmit(e)}>Ajouter</button>
                     </div>
                 </div>
