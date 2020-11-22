@@ -1,27 +1,29 @@
 import React, { useState, Fragment } from 'react';
 import { PropTypes } from "prop-types";
 import Editor from '../elements/Editor'
-import { connect } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { addSolution } from "../../actions/solutionsActions"
-import './Solution.css';
+import './AddSolution.css';
 // import Editor from 'react-markdown-editor-lite';
 
-function Solution(props) {
+export default function AddSolution(props) {
+  const idUser = useSelector(state => state.security.user.result.id); // On récupère direct depuis redux
   const [inputFields, setInputFields] = useState([{
     stepNb: "",
     stepTitle: "",
     stepContent: ""
   }]);
+  const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const solution = {
-      idUser: props.security.user.result.id,
+      idUser: idUser,
       idKnowledge: props.idKnowledge,
       inputFields: inputFields
     }
     console.log("Solution : ", solution);
-    props.addSolution(solution, props.history);
+    dispatch(addSolution(solution, props.history));
   }
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -78,12 +80,6 @@ function Solution(props) {
     </div>
   );
 }
-Solution.propTypes = {
+AddSolution.propTypes = {
   addSolution: PropTypes.func.isRequired,
 }
-function mapStateToProps(state) {
-  return {
-    security: state.security,
-  };
-}
-export default connect(mapStateToProps, { addSolution })(Solution);

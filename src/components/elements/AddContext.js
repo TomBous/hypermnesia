@@ -32,7 +32,6 @@ export default function AddContext(props) {
           idUser: user.id,
           idKnowledge: props.idKnowledge
         }
-        console.log("Data : ", data);
         dispatch(addContext(data));
         props.close("");
     }

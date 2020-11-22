@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Problematic from '../elements/Problematic'
 import Step from '../elements/Step'
 import Sidebar from '../layout/sidebar'
-import Solution from './Solution'
+import AddSolution from './AddSolution'
 import Overview from './Overview'
 import { Link } from "react-router-dom";
 import { connect } from "react-redux"
@@ -128,7 +128,7 @@ class Knowledge extends Component {
         } else if (this.state.currentView === "overview") {
             content = <Overview idKnowledge={id} solutions={this.state.solutions} history={this.props.history} switcher={this.switchView} solViewer={this.selectSolution}/>;
         } else if (this.state.currentView === "addSolution") {
-            content = <Solution idKnowledge={id} history={this.props.history}/>;
+            content = <AddSolution idKnowledge={id} history={this.props.history}/>;
         } else {
             content = <div className="no_result"><h1>Aucune solution</h1></div>
         }

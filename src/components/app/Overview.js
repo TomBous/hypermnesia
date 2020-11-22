@@ -11,7 +11,7 @@ import AddContext from '../elements/AddContext'
 import AddConstraint from '../elements/AddConstraint'
 // import Editor from 'react-markdown-editor-lite';
 
-export default function Solution(props) {
+export default function Overview(props) {
   const [addType, setAddType] = useState("");
   const [solutions, setSolutions] = useState(props.solutions); // On récupère les solutions réorganisées dans Knowledge.js
   const contexts = useSelector(state => state.knowledge.informations.contexts); // On récupère direct depuis redux
@@ -39,7 +39,7 @@ export default function Solution(props) {
   let solutionsList = [];
   if (Array.isArray(solutions)) {
     solutionsList = solutions.map((solution, index) => (
-    <SolutionCard type="solution" key={solution[0].id_solution} index={index} content={solution.map((sol) => { return sol.title })} votes={solution[0].counter_vote} onclick={() => viewSolution(index)}/>
+    <SolutionCard key={solution[0].id_solution} index={index} content={solution.map((sol) => { return sol.title })} votes={solution[0].counter_vote} onclick={() => viewSolution(index)}/>
   ))
   }
 
@@ -84,7 +84,7 @@ export default function Solution(props) {
     </div>
   );
 }
-Solution.propTypes = {
+Overview.propTypes = {
   findContexts: PropTypes.func.isRequired,
   findConstraints: PropTypes.func.isRequired,
 }
