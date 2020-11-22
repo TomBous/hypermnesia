@@ -24,17 +24,10 @@ export default function Solution(props) {
   };
 
   const removeContext = (idContext) => {
-    dispatch(deleteContext(idContext));
-    setTimeout(() => {
-      dispatch(findContexts(props.idKnowledge));
-    }, 150)
-    
+    dispatch(deleteContext(idContext, props.idKnowledge));
   }
   const removeConstraint = (idConstraint) => {
-    dispatch(deleteConstraint(idConstraint))
-    setTimeout(() => {
-      dispatch(findConstraints(props.idKnowledge));
-    }, 150)
+    dispatch(deleteConstraint(idConstraint, props.idKnowledge));
   }
 
   useEffect(() => {

@@ -36,7 +36,8 @@ export const addContext = (context) => async (dispatch) => {
             })
 
         } else {
-            findContexts(context.idKnowledge);
+            console.log("Apppel de FindContext :", context.idKnowledge)
+            dispatch(findContexts(context.idKnowledge));
             return;
         }
     } catch (error) {
@@ -46,7 +47,7 @@ export const addContext = (context) => async (dispatch) => {
         });
     }
 };
-export const deleteContext = (idContext) => async (dispatch) => {
+export const deleteContext = (idContext, idKnowledge) => async (dispatch) => {
     try {
         console.log("DEEEELLLEEEETTTEEEE CONTEXT")
         const res = await axios.delete(`http://127.0.0.1:8080/api/contexts/${idContext}`);
@@ -57,6 +58,7 @@ export const deleteContext = (idContext) => async (dispatch) => {
             })
 
         } else {
+            dispatch(findContexts(idKnowledge));
             return;
         }
     } catch (error) {

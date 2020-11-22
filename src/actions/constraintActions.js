@@ -35,7 +35,7 @@ export const addConstraint = (constraint) => async (dispatch) => {
             })
 
         } else {
-            findConstraints(constraint.idKnowledge);
+            dispatch(findConstraints(constraint.idKnowledge));
             return;
         }
     } catch (error) {
@@ -45,7 +45,7 @@ export const addConstraint = (constraint) => async (dispatch) => {
         });
     }
 };
-export const deleteConstraint = (idConstraint) => async (dispatch) => {
+export const deleteConstraint = (idConstraint, idKnowledge) => async (dispatch) => {
     try {
         const res = await axios.delete(`http://127.0.0.1:8080/api/constraints/${idConstraint}`);
         if (res.data.success === 0) {
@@ -55,6 +55,7 @@ export const deleteConstraint = (idConstraint) => async (dispatch) => {
             })
 
         } else {
+            dispatch(findConstraints(idKnowledge));
             return;
         }
     } catch (error) {
