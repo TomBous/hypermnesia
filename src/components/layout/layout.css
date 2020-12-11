@@ -6,6 +6,12 @@ a {
     text-decoration: none;
     color: inherit;
 }
+p {
+  margin-top: 1.5rem;
+}
+ul {
+  margin: 0.5rem;
+}
 button {
   border: none;
 }
@@ -28,7 +34,9 @@ font-family: Arial, serif;
 line-height: 1em;
 font-weight: 700;
 }
-/* -------------------- POSITIONNING -----------------*/
+/*------------------------------------------------------*\
+*			           ==> POSITIONNING
+\*------------------------------------------------------*/
 .flex-container {
     display: flex;
     flex-flow: column wrap;
@@ -142,6 +150,9 @@ font-weight: 700;
     box-shadow: 0 0 5px -2px rgba(0, 0, 0, 0.5);
     display: table;
 }
+.knowledge-header {
+  position: relative;
+}
 .knowledge-header img {
     width: 300px;
     border-radius: 10px 10px 0 0px;
@@ -167,6 +178,13 @@ font-weight: 700;
   margin: 10px  5px 0 5px;
   border-radius: 3px;
 
+}
+.favorite {
+	width: 50px;
+	position: absolute;
+	right: 10px;
+	color: rgb(255, 102, 102);
+	top: 10px;
 }
 /* -------------------- Buttons Components -----------------*/
 
@@ -286,8 +304,11 @@ input.btn {
   border-radius: 5px;
 }
 /* -------------------- Inputs Components -----------------*/
+input {
+  font-weight: 600;
+}
 
-main input[type="email"],main input[type="password"],main input[type="text"] {
+.card input[type="email"],.card input[type="password"],.card input[type="text"] {
 	border-radius: 5px;
 	border: 3px dotted #3d64ae;
 	line-height: 2;
@@ -327,10 +348,49 @@ main input:focus::placeholder  {
 .invalid input {
     border: 3px dotted #c74b3a;
 }
+/*------------------------------------------------------*\
+*					 ==> InputSearch
+\*------------------------------------------------------*/
+
+.input-search {
+  position: relative;
+}
+.input-search input {
+	border: 3px solid #B9B9B9;
+	padding: 5px 30px 5px 35px;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+.input-search .magnifying-glass {
+	position: absolute;
+	top: 7px;
+	left: 10px;
+	width: 20px;
+	color: #999;
+}
+.input-search .clear {
+	position: absolute;
+	top: 7px;
+	right: 10px;
+	width: 20px;
+  color: #999;
+  transition: all 0.5s;
+  cursor: pointer;
+  opacity: 0;
+}
+.input-search .clear:hover {
+	color: #d1654a;
+}
+.input-search .fadein {
+  opacity: 1;
+}
+
 /*------------------ List ----------------------*/
 
 
-/* -------------------- Sidebar -----------------*/
+/*------------------------------------------------------*\
+*			 ==> Sidebar
+\*------------------------------------------------------*/
 .sidebar {
   height: 100vh;
   width: 250px;

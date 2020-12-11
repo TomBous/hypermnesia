@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_SOLUTIONS, GET_ERRORS, SHOW_ERRORS, ADD_SOLUTIONS } from "./types";
 
-export const findSolutions = (data, history) => async (dispatch) => {
+export const findSolutions = (data) => async (dispatch) => {
     try {
         const res = await axios.get("http://127.0.0.1:8080/api/solutions/get_solutions", { params: data });
         if (res.data.success === 1 && res.status === 200) {
@@ -36,6 +36,7 @@ export const addSolution = (solution, history) => async (dispatch) => {
             })
 
         } else {
+            dispatch(findSolutions({idKnowledge: solution.idKnowledge}));
             dispatch({
                 type: ADD_SOLUTIONS,
                 payload: res.data.message,

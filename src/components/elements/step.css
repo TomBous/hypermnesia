@@ -3,9 +3,10 @@
     font-weight: 600;
     color: #555;
     position: relative;
+    margin-bottom: 2rem;
 }
 .step {
-    border-radius: 10px;
+    border-radius: 40px;
     background-color: #FFF;
     box-shadow: 0 0 3px 0px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -13,7 +14,6 @@
     width: 100%;
 }
 .step p {
-    margin-top: 20px;
     color: #555;
 }
 .step img {
@@ -21,7 +21,7 @@
     border-radius: 10px 10px 0 0;
 }
 .step_content {
-    padding: 20px 20px 20px 80px;
+    padding: 30px 20px 30px 80px;
     display: inline-block;
     width: 100%;
 }
@@ -50,7 +50,8 @@ vertical-align: middle;
 .content h1,.content h2,.content h3 {
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #555;
-    margin-top: 20px!important;
+    margin-top: 1.5rem!important;
+    margin-bottom: 1.5rem!important;
 }
 .content h1 {
     font-size: 1.5em;
@@ -63,9 +64,38 @@ vertical-align: middle;
     font-size: 1em;
 }
 /* -------------- SYNTAX HIGHLIGHTER */
+
+.step p > code {
+	color: #c40707;
+	padding: 2px;
+	background-color: rgba(0,0,0,0.1);
+	border-radius: 5px;
+}
 .step pre {
     border-radius: 5px;
 }
 .step pre .react-syntax-highlighter-line-number {
     opacity: 0.4;
+    user-select: none; /* Eviter la selection du numéros de ligne */
+}
+
+.code-wrapper {
+    position: relative;
+    margin-top: 1rem;
+}
+.code-wrapper svg {
+	width: 20px;
+	position: absolute;
+	top: calc(50% - 10px);
+	right: 10px;
+	color: #FFF;
+	opacity: 0.3;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.code-wrapper svg:hover {
+	opacity: 0.8;
+}
+.code-wrapper svg:active {
+	transform: scale(2);
 }

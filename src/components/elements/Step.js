@@ -6,9 +6,10 @@ import './step.css'
 
 
 export default class Step extends Component {
+
     render() {
         const regex = /\\n/gi;
-        const content = this.props.content.replace(regex, "\n"); // Permet de rehabiliter les retours à la ligne
+        const content = typeof this.props.content ==='string' ? this.props.content.replace(regex, "\n") : ""; // Permet de rehabiliter les retours à la ligne
         return (
             <div className="step">
                 {this.props.img && <img src={this.props.img} alt="" />}

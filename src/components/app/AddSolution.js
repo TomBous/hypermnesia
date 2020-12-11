@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
 import { PropTypes } from "prop-types";
 import Editor from '../elements/Editor'
 import { useSelector, useDispatch } from "react-redux"
@@ -13,7 +13,18 @@ export default function AddSolution(props) {
     stepTitle: "",
     stepContent: ""
   }]);
+  const [sending, setSending] = useState(false);
   const dispatch = useDispatch();
+  
+  const solutions = useSelector(state => state.knowledge.solutions);
+  useEffect(() => {
+    console.log("USEEE EFFECCTTT")
+    if (sending) {
+    console.log("swwiiiitcchhhh viiiewww :", solutions.length)
+    props.selectSolution(solutions.length - 1)
+    props.switchView("solutions")
+    }
+  }, [solutions])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,7 +34,10 @@ export default function AddSolution(props) {
       inputFields: inputFields
     }
     console.log("Solution : ", solution);
+    if (!sending) {
     dispatch(addSolution(solution, props.history));
+    setSending(true);
+    }
   }
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -69,7 +83,9 @@ export default function AddSolution(props) {
             ))}
             <div className="flex fcenter mgb-30">
               <i className="btn-round-minus fas fa-3x fa-minus-circle" onClick={() => handleRemoveFields()}></i>
-              <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Sauvegarder</button>
+              <button className="btn btn-danger" onClick={() => props.switchView("overview")}>Annuler</button>
+              {!sending && <button className="btn btn-primary" type="submit" onClick={(e) => handleSubmit(e)}>Sauvegarder</button>}
+              {sending && <button className="btn btn-primary saving">En cours<span>.</span><span>.</span><span>.</span></button>}  {/* css loader saving */}
               <i className="btn-round-plus fas fa-3x fa-plus-circle" onClick={() => handleAddFields()}></i>
             </div>
           </form>
@@ -81,5 +97,5 @@ export default function AddSolution(props) {
   );
 }
 AddSolution.propTypes = {
-  addSolution: PropTypes.func.isRequired,
+  solViewer: PropTypes.func.isRequired,
 }

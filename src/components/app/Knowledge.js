@@ -26,7 +26,7 @@ class Knowledge extends Component {
         const data = {
             'idKnowledge': this.props.match.params.knId,
         };
-        this.props.findSolutions(data, this.props.history);
+        this.props.findSolutions(data);
     }
     switchSolution() {
         const nbSolution = this.state.solutions.length - 1;
@@ -39,7 +39,6 @@ class Knowledge extends Component {
                 currentSolution: 0,
             })
         }
-
     }
     selectSolution(number) {
         this.setState({
@@ -64,16 +63,6 @@ class Knowledge extends Component {
                     currentView : "addSolution"
                 })
                 break;
-            case "addContext":
-                this.setState({
-                    currentView : "addContext"
-                })
-                break;
-            case "addConstraint":
-                this.setState({
-                    currentView : "addConstraint"
-                })
-                break;
             default:
                 this.setState({
                     currentView : "solutions"
@@ -81,8 +70,8 @@ class Knowledge extends Component {
                 break;
         }
     }
-    componentDidUpdate(prevProps) {
-        if (this.props.knowledge !== prevProps.knowledge && Array.isArray(this.props.knowledge.solutions)) {
+    componentDidUpdate(prevProps, prevState) {
+        if (Array.isArray(this.props.knowledge.solutions) && this.props.knowledge.solutions !== prevProps.knowledge.solutions) {
             let randomSolutions = this.props.knowledge.solutions;
             var solutions = [];
             // A partir des steps, création d'un tableau de solutions
@@ -108,9 +97,32 @@ class Knowledge extends Component {
                 return 0;
             }
             solutions.forEach(solution => solution.sort(orderByPosition));
+            console.log("SET STATE !!!")
             this.setState({
                 solutions: solutions,
             })
+        }
+        // Gestion du Copy Paste des blocs de code
+        if (this.state.solutions !== prevState.solutions || this.state.currentSolution !== prevState.currentSolution) {
+            const codeBlocks = document.querySelectorAll(".code-content");
+            if (codeBlocks.length > 0) {
+                const codeTexts = []
+                codeBlocks.forEach((bloc) => {
+                    let text = []
+                    bloc.childNodes.forEach((span) => {
+                        if (span.tagName === "SPAN") {
+                            text.push(span.innerText)
+                        }
+                    })
+                    codeTexts.push(text.join(''))
+                })
+                const copyButtons = document.querySelectorAll(".copyIcon")
+                copyButtons.forEach((button, index) => {
+                    button.addEventListener("click", () => {
+                        copyTextToClipboard(codeTexts[index])
+                    })
+                })
+            }
         }
     }
 
@@ -128,7 +140,7 @@ class Knowledge extends Component {
         } else if (this.state.currentView === "overview") {
             content = <Overview idKnowledge={id} solutions={this.state.solutions} history={this.props.history} switcher={this.switchView} solViewer={this.selectSolution}/>;
         } else if (this.state.currentView === "addSolution") {
-            content = <AddSolution idKnowledge={id} history={this.props.history}/>;
+            content = <AddSolution idKnowledge={id} switchView={this.switchView} selectSolution={this.selectSolution} history={this.props.history}/>;
         } else {
             content = <div className="no_result"><h1>Aucune solution</h1></div>
         }
@@ -144,8 +156,11 @@ class Knowledge extends Component {
                         {this.state.currentView === "solutions" && 
                         <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>En savoir plus</button>
                         }
-                        {(this.state.currentView === "overview" || this.state.currentView === "addSolution") && 
+                        {(this.state.currentView === "overview") && 
                         <button type="button" className="btn btn-primary" onClick={() => this.switchView("solutions")}>Solutions</button>
+                        }
+                        {(this.state.currentView === "addSolution") && 
+                        <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>Vue d'ensemble</button>
                         }
                         
                     </div>
@@ -167,26 +182,17 @@ function mapStateToProps(state) {
   }
 export default connect(mapStateToProps, { findSolutions })(Knowledge);
 
-/* export default class Knowledge extends Component {
-
-    render() {
-        const id = this.props.match.params.knId;
-        console.log(id);
-        return (
-            <div className="full-container">
-                <div className="flex-container mgt-50">
-                    <Link to="/dashboard"><i class=" btn-round fas fa-3x fa-arrow-circle-left"></i></Link>
-                    <Problematic id={id}/>
-                    <Step img={imgHead} num="1" code="sudo apt-get install php7.0-mysql" title="Installer l'extension PDO" content="Quick Install Instructions of php-pdo-mysql on Ubuntu Server. It’s Super Easy! simply click on Copy button to copy the command and paste into your command line terminal using built-in APT package manager."/>
-                    <Step num="2" title="Récupérer les informations de connexion de sa BDD"
-                    code="private $host = 'localhost'; " 
-                    content="Il faut trouver les identifiant de connexion à la BDD, son adresse ainsi que son port."/>
-                    <Step num="3" title="Créer un composant de connexion"
-                    code="public function connect(){ return new PDO }" 
-                    content="Il faut trouver les identifiant de connexion à la BDD, son adresse ainsi que son port."/>
-                
-                </div>
-            </div>
-        )
+function copyTextToClipboard(text) {
+    if (!navigator.clipboard) {
+        console.log("Update your browser to copy to clipboard");
+      return;
     }
-} */
+    navigator.clipboard.writeText(text).then(
+      function() {
+        console.log("Async: Copying to clipboard was successful!");
+      },
+      function(err) {
+        console.error("Async: Could not copy text: ", err);
+      }
+    );
+  }

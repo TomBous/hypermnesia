@@ -52,7 +52,7 @@ export default class Step extends Component {
                     {/* <div><ReactMarkdown source={input} renderers={{ code: CodeBlock }}/></div> */}
                     {blockCode}
                     <div>{this.props.content}</div>
-                    <MarkdownEditor renderers={{code: CodeBlock}}/>
+                    <MarkdownEditor renderers={{code: <CodeBlock/>}}/>
                     <Editor />
                 </div>
             </div>

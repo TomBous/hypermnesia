@@ -42,13 +42,13 @@ class Header extends Component {
         if (this.props.dashboard.perspectivesList) {
             // Mise en place d'une perspective par defaut
             if (this.state.selectedOption === null) {
-                this.props.setPerspective(this.props.dashboard.perspectivesList[1].value);
+                this.props.setPerspective(this.props.dashboard.perspectivesList[0].value);
                 let data = {
-                    idPerspective: this.props.dashboard.perspectivesList[1].value,
+                    idPerspective: this.props.dashboard.perspectivesList[0].value,
                 }
                 this.props.findTags(data);
                 this.setState({
-                    selectedOption: this.props.dashboard.perspectivesList[1],
+                    selectedOption: this.props.dashboard.perspectivesList[0],
                 })
             }
             // Mise en place des options du select

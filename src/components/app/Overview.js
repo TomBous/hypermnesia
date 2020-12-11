@@ -43,11 +43,9 @@ export default function Overview(props) {
   ))
   }
 
-  let contextsList = [], constraintsList = [];
-  if (typeof contexts[0] !== "string") { // On check que le premier élément du tableau est différent d'une string (ie: pas de résultats)
-  contextsList = contexts.map((context) => <InformationCard key={context.id} information={context} delete={removeContext}/>);
-  constraintsList = constraints.map((constraint) => <InformationCard key={constraint.id} information={constraint} delete={removeConstraint}/>);
-  }
+  let contextsList = typeof contexts[0] !== "string" ? contexts.map((context) => <InformationCard key={context.id} information={context} delete={removeContext}/>) : "";
+  let constraintsList = typeof constraints[0] !== "string" ? constraints.map((constraint) => <InformationCard key={constraint.id} information={constraint} delete={removeConstraint}/>) : "";
+  
 
 
   return (

@@ -19,26 +19,31 @@ class Dashboard extends Component {
         if (props.dashboard) {
             return {
                 knowledges: props.dashboard.knowledges,
-                tagList: props.dashboard.tagList
+                tagList: props.dashboard.tagList,
+                knowledgesFiltered: props.dashboard.knowledgesFiltered
             }
         }
     }
+    mergeTags(knowledgesArray, tagsArray) {
+        knowledgesArray.forEach(knowledge => {
+            knowledge.tags = [];
+            tagsArray.forEach(tag => {
+                if (knowledge.id === tag.id_knowledge) {
+                    knowledge.tags.push(tag.name);
+                }
+            })
+        });
+    }
     render() {
-        let knowledges = this.state.knowledges;
-        let tagList = this.state.tagList;
+        let { knowledges, tagList, knowledgesFiltered } = this.state;
         let cards = [];
-        if (knowledges !== undefined && knowledges !== "" && tagList !== undefined) {
-            knowledges.forEach(knowledge => {
-                knowledge.tags = [];
-                tagList.forEach(tag => {
-                    if (knowledge.id === tag.id_knowledge) {
-                        knowledge.tags.push(tag.name);
-                    }
-                })
-            });
+        if (Array.isArray(knowledgesFiltered)) {
+            cards = knowledgesFiltered.map(knowledge => <KnowledgeCard key={knowledge.id} id={knowledge.id} problematic={knowledge.problematic} tags={knowledge.tags} />)
+        } else if (knowledges !== undefined && knowledges !== "" && tagList !== undefined) {
+            this.mergeTags(knowledges, tagList);
             cards = knowledges.map(knowledge => <KnowledgeCard key={knowledge.id} id={knowledge.id} problematic={knowledge.problematic} tags={knowledge.tags} />)
         } else {
-            cards = <div className="no_result"><h1>Auncun savoir</h1></div>
+            cards = <div className="no_result"><h1>Aucun savoir</h1></div>
         }
         return (
             <div className="flex">

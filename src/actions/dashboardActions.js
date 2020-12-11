@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_KNOWLEDGES, GET_ERRORS, GET_PERSPECTIVES, SET_PERSPECTIVE, GET_TAGS } from "./types";
+import { GET_KNOWLEDGES, GET_ERRORS, GET_PERSPECTIVES, SET_PERSPECTIVE, GET_TAGS, FILTER_KNOWLEDGES } from "./types";
 
 export const findPinnedKn = (data, history) => async (dispatch) => {
     try {
@@ -231,5 +231,12 @@ export const setPerspective = (perspective) => async (dispatch) => {
     dispatch({
         type: SET_PERSPECTIVE,
         payload: perspective,
+    })
+};
+
+export const filterKnowledges = (filteredList) => async (dispatch) => {
+    dispatch({
+        type: FILTER_KNOWLEDGES,
+        payload: filteredList,
     })
 };
