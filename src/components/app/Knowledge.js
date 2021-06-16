@@ -11,7 +11,7 @@ import { PropTypes } from "prop-types";
 import imgHead from '../../images/website/software-engineering.jpg'
 
 class Knowledge extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props)
         this.state = {
             solutions: "",
@@ -21,7 +21,7 @@ class Knowledge extends Component {
         this.switchSolution = this.switchSolution.bind(this);
         this.switchView = this.switchView.bind(this);
         this.selectSolution = this.selectSolution.bind(this);
-      }
+    }
     componentWillMount() {
         const data = {
             'idKnowledge': this.props.match.params.knId,
@@ -32,7 +32,7 @@ class Knowledge extends Component {
         const nbSolution = this.state.solutions.length - 1;
         if (this.state.currentSolution < nbSolution) {
             this.setState((prevState) => ({
-                currentSolution: prevState.currentSolution + 1, 
+                currentSolution: prevState.currentSolution + 1,
             }))
         } else {
             this.setState({
@@ -50,22 +50,22 @@ class Knowledge extends Component {
         switch (view) {
             case "solutions":
                 this.setState({
-                    currentView : "solutions"
+                    currentView: "solutions"
                 })
                 break;
             case "overview":
                 this.setState({
-                    currentView : "overview"
+                    currentView: "overview"
                 })
                 break;
             case "addSolution":
                 this.setState({
-                    currentView : "addSolution"
+                    currentView: "addSolution"
                 })
                 break;
             default:
                 this.setState({
-                    currentView : "solutions"
+                    currentView: "solutions"
                 })
                 break;
         }
@@ -87,12 +87,12 @@ class Knowledge extends Component {
                 }
             })
             // Pour chaque solution je met dans l'ordre les steps
-            function orderByPosition( a, b ) {
-                if ( a.position < b.position ){
-                  return -1;
+            function orderByPosition(a, b) {
+                if (a.position < b.position) {
+                    return -1;
                 }
-                if ( a.position > b.position ){
-                  return 1;
+                if (a.position > b.position) {
+                    return 1;
                 }
                 return 0;
             }
@@ -130,41 +130,41 @@ class Knowledge extends Component {
         const id = this.props.match.params.knId;
         console.log(id);
         let content = [];
-        if (this.state.currentView === "solutions"  && Array.isArray(this.state.solutions)) {
+        if (this.state.currentView === "solutions" && Array.isArray(this.state.solutions)) {
             let solutions = this.state.solutions;
             content = (
                 <div className="flex-container">
-                {solutions[this.state.currentSolution].map(step => <Step /*img={imgHead}*/ key={step.id} num={step.position} title={step.title} content={step.content}/>)}
+                    {solutions[this.state.currentSolution || 0].map(step => <Step /*img={imgHead}*/ key={step.id} num={step.position} title={step.title} content={step.content} />)}
                 </div>
             )
         } else if (this.state.currentView === "overview") {
-            content = <Overview idKnowledge={id} solutions={this.state.solutions} history={this.props.history} switcher={this.switchView} solViewer={this.selectSolution}/>;
+            content = <Overview idKnowledge={id} solutions={this.state.solutions} history={this.props.history} switcher={this.switchView} solViewer={this.selectSolution} />;
         } else if (this.state.currentView === "addSolution") {
-            content = <AddSolution idKnowledge={id} switchView={this.switchView} selectSolution={this.selectSolution} history={this.props.history}/>;
+            content = <AddSolution idKnowledge={id} switchView={this.switchView} selectSolution={this.selectSolution} history={this.props.history} />;
         } else {
             content = <div className="no_result"><h1>Aucune solution</h1></div>
         }
         return (
             <div className="full-container">
-            <Sidebar />
+                <Sidebar />
                 <div className="flex-container mgt-50">
                     <div className="flex frow fbetween fstart">
                         <i className="btn-round fas fa-3x fa-arrow-circle-left" onClick={() => this.props.history.goBack()}></i>
                         {this.state.currentView === "solutions" && this.state.solutions.length > 1 &&
-                        <button type="button" className="btn btn-success" onClick={this.switchSolution}>Autre solution</button>
+                            <button type="button" className="btn btn-success" onClick={this.switchSolution}>Autre solution</button>
                         }
-                        {this.state.currentView === "solutions" && 
-                        <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>En savoir plus</button>
+                        {this.state.currentView === "solutions" &&
+                            <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>En savoir plus</button>
                         }
-                        {(this.state.currentView === "overview") && 
-                        <button type="button" className="btn btn-primary" onClick={() => this.switchView("solutions")}>Solutions</button>
+                        {(this.state.currentView === "overview") &&
+                            <button type="button" className="btn btn-primary" onClick={() => this.switchView("solutions")}>Solutions</button>
                         }
-                        {(this.state.currentView === "addSolution") && 
-                        <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>Vue d'ensemble</button>
+                        {(this.state.currentView === "addSolution") &&
+                            <button type="button" className="btn btn-primary" onClick={() => this.switchView("overview")}>Vue d'ensemble</button>
                         }
-                        
+
                     </div>
-                    <Problematic id={id}/>
+                    <Problematic id={id} />
                 </div>
                 {content}
             </div>
@@ -179,20 +179,20 @@ function mapStateToProps(state) {
         dashboard: state.dashboard,
         knowledge: state.knowledge
     };
-  }
+}
 export default connect(mapStateToProps, { findSolutions })(Knowledge);
 
 function copyTextToClipboard(text) {
     if (!navigator.clipboard) {
         console.log("Update your browser to copy to clipboard");
-      return;
+        return;
     }
     navigator.clipboard.writeText(text).then(
-      function() {
-        console.log("Async: Copying to clipboard was successful!");
-      },
-      function(err) {
-        console.error("Async: Could not copy text: ", err);
-      }
+        function () {
+            console.log("Async: Copying to clipboard was successful!");
+        },
+        function (err) {
+            console.error("Async: Could not copy text: ", err);
+        }
     );
-  }
+}

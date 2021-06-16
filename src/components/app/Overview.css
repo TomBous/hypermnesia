@@ -35,6 +35,9 @@
     padding: 3px 10px;
     color: #5e81ac;
 }
+.small_card_footer i {
+    cursor: pointer;
+}
 .small_card_footer .vote i {
     margin-left: 10px;
 }

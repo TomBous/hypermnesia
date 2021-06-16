@@ -15,14 +15,14 @@ export default function AddSolution(props) {
   }]);
   const [sending, setSending] = useState(false);
   const dispatch = useDispatch();
-  
+
   const solutions = useSelector(state => state.knowledge.solutions);
   useEffect(() => {
     console.log("USEEE EFFECCTTT")
     if (sending) {
-    console.log("swwiiiitcchhhh viiiewww :", solutions.length)
-    props.selectSolution(solutions.length - 1)
-    props.switchView("solutions")
+      console.log("swwiiiitcchhhh viiiewww :", solutions.length)
+      props.selectSolution(solutions.length - 1)
+      props.switchView("solutions")
     }
   }, [solutions])
 
@@ -35,8 +35,8 @@ export default function AddSolution(props) {
     }
     console.log("Solution : ", solution);
     if (!sending) {
-    dispatch(addSolution(solution, props.history));
-    setSending(true);
+      dispatch(addSolution(solution, props.history));
+      setSending(true);
     }
   }
   const handleInputChange = (index, event) => {
@@ -75,7 +75,7 @@ export default function AddSolution(props) {
                   <div className="step_content">
                     <div className="step_num">{index + 1}°</div>
                     <input type="hidden" name="stepNb" id="stepNb" value={index + 1} required="required" />
-                    <input type="text" name="stepTitle" id="stepTitle" placeholder="[Titre/Résumé] de l'étape" value={inputFields.stepTitle} onChange={event => handleInputChange(index, event)} required="required" />
+                    <input type="text" name="stepTitle" className="step_title" placeholder="Résumé de l'étape" value={inputFields.stepTitle} onChange={event => handleInputChange(index, event)} required="required" />
                     <Editor onchange={(value, index) => handleEditorChange(value, index)} index={index} />
                   </div>
                 </div>
