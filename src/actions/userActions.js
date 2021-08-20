@@ -26,7 +26,7 @@ export const register = (newUser, history) => async (dispatch) => {
 
 export const login = (LoginRequest, history) => async (dispatch) => {
     try {
-        const res = await axios.post("http://127.0.0.1:8080/api/users/login", LoginRequest);
+        const res = await axios.post("https://wiki.thomasbousquet.me/api/users/login", LoginRequest);
         if (res.data.success === 0) {
             console.log("if error!")
             dispatch({
@@ -35,35 +35,35 @@ export const login = (LoginRequest, history) => async (dispatch) => {
             })
 
         } else {
-        // Extraction du token
-        const { token } = res.data;
-        // Stockage du token en localStorage
-        localStorage.setItem("Token", token);
-        //On met le token dans l'entete par défaut
-        setJWTToken(token);
-        //On décode le token et on le dispatch
-        const decodedUser = jwt_decode(token);
-        dispatch({
-            type: SET_CURRENT_USER,
-            payload: decodedUser,
-        });
-        // On récupère les perspectives
-        const perspectives = await axios.get("http://127.0.0.1:8080/api/knowledges/perspectives");
-        if (perspectives.data.success === 1 && perspectives.status === 200) {
-            console.log(perspectives.data.message);
-            const perspectivesList = perspectives.data.message.map(({ id: value, name: label, ...rest }) => ({ value, label, ...rest })); // Modification des keys des objets
+            // Extraction du token
+            const { token } = res.data;
+            // Stockage du token en localStorage
+            localStorage.setItem("Token", token);
+            //On met le token dans l'entete par défaut
+            setJWTToken(token);
+            //On décode le token et on le dispatch
+            const decodedUser = jwt_decode(token);
             dispatch({
-                type: GET_PERSPECTIVES,
-                payload: perspectivesList,
-            })
+                type: SET_CURRENT_USER,
+                payload: decodedUser,
+            });
+            // On récupère les perspectives
+            const perspectives = await axios.get("http://127.0.0.1:8080/api/knowledges/perspectives");
+            if (perspectives.data.success === 1 && perspectives.status === 200) {
+                console.log(perspectives.data.message);
+                const perspectivesList = perspectives.data.message.map(({ id: value, name: label, ...rest }) => ({ value, label, ...rest })); // Modification des keys des objets
+                dispatch({
+                    type: GET_PERSPECTIVES,
+                    payload: perspectivesList,
+                })
 
-        } else {
-            dispatch({
-                type: GET_PERSPECTIVES,
-                payload: 0,
-            })
-        }
-        history.push("/dashboard");
+            } else {
+                dispatch({
+                    type: GET_PERSPECTIVES,
+                    payload: 0,
+                })
+            }
+            history.push("/dashboard");
         }
 
     } catch (error) {

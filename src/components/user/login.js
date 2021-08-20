@@ -31,7 +31,7 @@ class Login extends Component {
         
     };
     componentDidUpdate(prevProps) {
-        if (this.props.errors.message && this.props.errors !== prevProps.errors) {
+        if (this.props.errors && this.props.errors !== prevProps.errors) {
             this.setState({
                 'error': this.props.errors.message,
             })
@@ -68,7 +68,7 @@ class Login extends Component {
                 <div className="card-content flex fcolumn">
                     <ShowError />
                     <Input type="email" name="email" icon="fa-at" placeholder="Votre email" value={this.state.email} onchange={this.onChange} required="required"/>
-                    <Input type="password" name="password" icon="fa-key" placeholder="Mot de passe" value={this.state.password} onchange={this.onChange} required="required"/>
+                    <Input type="password" name="password" icon="fa-key" placeholder="Votre mot de passe" value={this.state.password} onchange={this.onChange} required="required"/>
                     <div className="tcenter"><Link to="/register">Créer un compte ?</Link></div>
                 </div>
                 <div className="card-footer flex fcolumn fmiddle">
